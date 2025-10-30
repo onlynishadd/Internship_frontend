@@ -22,5 +22,47 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans, Arial, Helvetica, sans-serif);
+  transition: background 0.28s, color 0.28s;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c7d2fe;
+  border-radius: 6px;
+  border: 2px solid #fff;
+}
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb {
+    background: #223264;
+    border: 2px solid #18181b;
+  }
+}
+input, textarea, button, select {
+  outline: none !important;
+  transition: box-shadow 0.2s, border-color 0.18s;
+}
+input:focus, textarea:focus, button:focus, select:focus {
+  box-shadow: 0 0 0 2px #38bdf8, 0 1px 2px #0001;
+  border-color: #38bdf8;
+}
+::selection {
+  background: #93c5fd;
+  color: #18181b;
+}
+@media (prefers-color-scheme: dark) {
+  ::selection {
+    background: #2152ff;
+    color: #fff;
+  }
+}
+button, .rounded-full, .rounded-lg, .rounded-xl {
+  transition: box-shadow 0.18s, background 0.16s, border-color 0.18s;
 }
