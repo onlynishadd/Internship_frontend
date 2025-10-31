@@ -74,4 +74,4 @@ git push -u origin main
 - This repo uses Client Components where animations are needed and keeps the rest as Server Components for performance.
 - If you modify the navbar/hero to add more animations, keep them in Client Components to avoid server/client boundary errors.
 
-Enjoy your improved AppDost+! 🎉
+Enjoy your improved AppDost! 🎉
