@@ -1,4 +1,4 @@
-# AppDost+ — Modern Next.js Clone with Improved UI/Animations
+# AppDost — Modern Next.js Clone with Improved UI/Animations
 
 A high-quality, production-ready clone inspired by `appdost.in`, rebuilt with a modern stack, improved UX, polished animations, and fully connected sub-pages.
 
