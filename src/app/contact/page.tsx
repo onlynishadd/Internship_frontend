@@ -1,8 +1,12 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-function validate(values: any) {
-  const errors: any = {};
+
+type FormValues = { name: string; email: string; message: string };
+type FormErrors = Partial<Record<keyof FormValues, string>>;
+
+function validate(values: FormValues): FormErrors {
+  const errors: FormErrors = {};
   if (!values.name) errors.name = "Name is required";
   if (!values.email) errors.email = "Email is required";
   else if (!/^\S+@\S+\.\S+$/.test(values.email)) errors.email = "Invalid email address";
@@ -10,14 +14,14 @@ function validate(values: any) {
   return errors;
 }
 export default function ContactPage() {
-  const [values, setValues] = useState({ name: "", email: "", message: "" });
-  const [errors, setErrors] = useState({});
+  const [values, setValues] = useState<FormValues>({ name: "", email: "", message: "" });
+  const [errors, setErrors] = useState<FormErrors>({});
   const [sent, setSent] = useState(false);
-  function handleChange(e: any) {
-    setValues({ ...values, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: undefined });
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setValues({ ...values, [e.target.name]: e.target.value } as FormValues);
+    setErrors({ ...errors, [e.target.name as keyof FormValues]: undefined });
   }
-  function handleSubmit(e: any) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const err = validate(values);
     setErrors(err);
@@ -30,7 +34,7 @@ export default function ContactPage() {
     <div className="mx-auto max-w-3xl px-4 pt-20 pb-16 flex flex-col md:flex-row gap-12 items-start">
       {/* Contact info */}
       <motion.aside initial={{opacity:0, x:-24}} animate={{opacity:1, x:0}} transition={{duration:0.75}} className="flex-1 mb-8 md:mb-0 md:pr-10">
-        <div className="text-3xl font-bold text-blue-700 mb-3">Contact AppDost+</div>
+        <div className="text-3xl font-bold text-blue-700 mb-3">Contact AppDost</div>
         <div className="mb-6 text-zinc-500 dark:text-zinc-300">Let's connect for your next project, partnership or idea!</div>
         <div className="mb-2 font-medium"><span className="text-zinc-500">Email:</span> <a className="text-blue-700 hover:underline" href="mailto:hello@appdost.in">hello@appdost.in</a></div>
         <div className="mb-2 font-medium"><span className="text-zinc-500">Phone:</span> <a className="text-blue-700 hover:underline" href="tel:+91000001234">+91 00000 1234</a></div>
@@ -59,3 +63,6 @@ export default function ContactPage() {
     </div>
   );
 }
+
+
+
