@@ -9,40 +9,54 @@ type Project = {
   img: string;
 };
 
-const projects: Project[] = [
-  { id: 1, title: "Project Alpha", desc: "Enterprise mobile app for logistics.", img: "/project-alpha.png" },
-  { id: 2, title: "Beta CRM", desc: "Custom CRM web solution.", img: "/beta-crm.png" },
-  { id: 3, title: "Gamma Site", desc: "Modern business website design.", img: "/gamma-site.png" },
-  { id: 4, title: "Delta Cloud", desc: "Secure cloud migration.", img: "/delta-cloud.png" },
-  { id: 5, title: "Epsilon UI", desc: "Cutting-edge UI/UX overhaul.", img: "/epsilon-ui.png" },
-  { id: 6, title: "Zeta Secure", desc: "Comprehensive cybersecurity.", img: "/zeta-secure.png" },
+const featured: Project[] = [
+  { id: 1, title: "BEU Mate – Bihar Engineering", desc: "An AI-powered study companion for B.Tech students offering personalized learning, exam guidance, and performance tracking.", img: "/project-alpha.png" },
+  { id: 2, title: "Devskillquest", desc: "An interactive learning platform designed for aspiring developers to master coding skills through projects, peer reviews, and challenges.", img: "/beta-crm.png" },
+  { id: 3, title: "The Weddings Chapter", desc: "A premium wedding planning platform connecting couples with top vendors, managing budgets, timelines, and guest lists.", img: "/gamma-site.png" },
+];
+
+const openSource: Project[] = [
+  { id: 101, title: "Deepfake Detection", desc: "Advanced learning model for detecting manipulated media using AI; helps ensure authenticity and trust.", img: "/delta-cloud.png" },
+  { id: 102, title: "NobBot", desc: "Smart automation bot built with Python for task scheduling, reminders, and productivity workflows.", img: "/epsilon-ui.png" },
+  { id: 103, title: "EduTools", desc: "Micro-utilities to enhance online education workflows — annotations, quick grading, and sharing.", img: "/zeta-secure.png" },
+  { id: 104, title: "DialogFlow Chatbot", desc: "Intelligent chatbot using Google Dialogflow for natural language support and lead capture.", img: "/project-alpha.png" },
 ];
 
 export default function PortfolioPage() {
   const [selected, setSelected] = useState<Project | null>(null);
+  const renderGrid = (projects: Project[]) => (
+    <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {projects.map((proj, i) => (
+        <motion.div
+          key={proj.id}
+          className="relative shadow-lg rounded-xl overflow-hidden group cursor-pointer border-t-4 border-blue-200 hover:border-blue-500 transition-all"
+          whileHover={{ scale: 1.045 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          onClick={() => setSelected(proj)}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 * i }}
+        >
+          <img src={proj.img} alt={proj.title} className="w-full h-48 object-cover group-hover:opacity-80 transition-opacity" />
+          <div className="p-5 bg-white dark:bg-zinc-900">
+            <div className="text-lg font-bold text-blue-800 mb-1">{proj.title}</div>
+            <div className="text-zinc-600 dark:text-zinc-200 text-sm">{proj.desc}</div>
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
+  );
+
   return (
     <div className="mx-auto max-w-6xl px-4 pt-20 pb-16">
-      <motion.h1 initial={{opacity:0, y:-30}} animate={{opacity:1, y:0}} transition={{duration:0.6}} className="text-4xl md:text-5xl font-extrabold mb-8 text-blue-700">Our Portfolio</motion.h1>
-      <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {projects.map((proj, i) => (
-          <motion.div
-            key={proj.id}
-            className="relative shadow-lg rounded-xl overflow-hidden group cursor-pointer border-t-4 border-blue-200 hover:border-blue-500 transition-all"
-            whileHover={{ scale: 1.045 }}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            onClick={() => setSelected(proj)}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 * i }}
-          >
-            <img src={proj.img} alt={proj.title} className="w-full h-48 object-cover group-hover:opacity-80 transition-opacity" />
-            <div className="p-5 bg-white dark:bg-zinc-900">
-              <div className="text-lg font-bold text-blue-800 mb-1">{proj.title}</div>
-              <div className="text-zinc-600 dark:text-zinc-200 text-sm">{proj.desc}</div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+      <motion.h1 initial={{opacity:0, y:-30}} animate={{opacity:1, y:0}} transition={{duration:0.6}} className="text-3xl md:text-4xl font-extrabold mb-2 text-blue-700 text-center">Our Featured Projects</motion.h1>
+      <p className="text-center text-zinc-600 dark:text-zinc-300 mb-10">Real solutions for real businesses – explore our successful projects</p>
+      {renderGrid(featured)}
+
+      <motion.h2 initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{ once:true }} transition={{duration:0.6}} className="text-2xl md:text-3xl font-extrabold mt-16 mb-2 text-blue-700 text-center">Open Source & Innovation Projects</motion.h2>
+      <p className="text-center text-zinc-600 dark:text-zinc-300 mb-10">Explore our contributions to AI, automation, and educational technology</p>
+      {renderGrid(openSource)}
+
       {/* Modal Popup */}
       <AnimatePresence>
         {selected && (
