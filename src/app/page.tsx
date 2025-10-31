@@ -43,17 +43,36 @@ export default function Home() {
       {/* Overlay content, positioned above background */}
       <div className="relative z-10">
         {/* Hero section */}
-        <section className="pt-32 pb-20 flex flex-col items-center text-center gap-8">
+        <section className="pt-32 pb-20 flex flex-col items-center text-center gap-8 relative">
           <motion.h1 initial={{ opacity:0, y:50 }} animate={{ opacity:1, y:0 }} transition={{ duration: 1}} className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text text-transparent drop-shadow-2xl">
-            AppDost+<br/>
-            <span className="text-zinc-800 dark:text-zinc-200 text-2xl font-normal">Empowering Your Digital Journey</span>
+            Transform Your
+            <br/>
+            <span className="text-zinc-800 dark:text-zinc-200">Ideas Into <span className="bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text text-transparent">Digital</span></span>
+            <br/>
+            <span className="text-zinc-800 dark:text-zinc-200">Reality</span>
           </motion.h1>
           <motion.p initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.5, duration:1 }} className="max-w-2xl text-lg md:text-2xl text-zinc-600 dark:text-zinc-100">
-            We transform ideas into modern digital products. Mobile, Web & Cloud. Innovation, speed, and support—by your side always.
+            Your trusted partner for comprehensive IT solutions. From mobile apps to enterprise software, we bring innovation and excellence to every project with our expert team of developers.
           </motion.p>
-          <motion.a href="#contact" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} className="inline-block mt-4 px-8 py-3 font-semibold rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-colors">
-            Start Your Project
+          <motion.a href="/services" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} className="inline-block mt-4 px-8 py-3 font-semibold rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-colors">
+            Explore Our Services
           </motion.a>
+
+          {/* Floating tiles (right side) */}
+          <div className="hidden md:block">
+            <motion.div initial={{ opacity:0, x:80, y:-40 }} animate={{ opacity:1, x:0, y:0 }} transition={{ duration:0.7, delay:0.2 }} className="absolute right-10 top-4 bg-white/95 dark:bg-zinc-900 rounded-xl shadow-xl border border-zinc-100 dark:border-zinc-800 px-5 py-4">
+              <div className="text-xs text-zinc-500 mb-1">Web Development</div>
+              <div className="text-blue-700 font-extrabold">+10 Projects</div>
+            </motion.div>
+            <motion.div initial={{ opacity:0, x:110, y:80 }} animate={{ opacity:1, x:0, y:0 }} transition={{ duration:0.7, delay:0.35 }} className="absolute right-6 top-40 bg-white/95 dark:bg-zinc-900 rounded-xl shadow-xl border border-zinc-100 dark:border-zinc-800 px-5 py-4">
+              <div className="text-xs text-zinc-500 mb-1">Fast Delivery</div>
+              <div className="text-blue-700 font-extrabold">On Time</div>
+            </motion.div>
+            <motion.div initial={{ opacity:0, x:60, y:160 }} animate={{ opacity:1, x:0, y:0 }} transition={{ duration:0.7, delay:0.5 }} className="absolute right-14 top-64 bg-white/95 dark:bg-zinc-900 rounded-xl shadow-xl border border-zinc-100 dark:border-zinc-800 px-5 py-4">
+              <div className="text-xs text-zinc-500 mb-1">Mobile Apps</div>
+              <div className="text-blue-700 font-extrabold">+4 Apps</div>
+            </motion.div>
+          </div>
         </section>
         {/* Services grid */}
         <section className="w-full py-16 px-4 max-w-6xl mx-auto">
@@ -81,19 +100,19 @@ export default function Home() {
           </div>
           <div className="flex-1 flex flex-col justify-center items-center gap-6">
             <motion.div initial={{ opacity: 0}} whileInView={{ opacity: 1}} transition={{ duration: 0.7, delay:0.2}} viewport={{ once:true }} className="text-center">
-              <div className="text-4xl font-bold text-blue-600">50+</div>
-              <div className="text-zinc-700 dark:text-zinc-200 text-lg">Successful Projects</div>
+              <div className="text-4xl font-bold text-blue-600">10+</div>
+              <div className="text-zinc-700 dark:text-zinc-200 text-lg">Web Projects</div>
             </motion.div>
             <motion.div initial={{ opacity: 0}} whileInView={{ opacity: 1}} transition={{ duration: 0.7, delay:0.4}} viewport={{ once:true }} className="text-center">
-              <div className="text-4xl font-bold text-blue-600">30+</div>
-              <div className="text-zinc-700 dark:text-zinc-200 text-lg">Satisfied Clients</div>
+              <div className="text-4xl font-bold text-blue-600">4+</div>
+              <div className="text-zinc-700 dark:text-zinc-200 text-lg">Mobile Apps • On Time</div>
             </motion.div>
           </div>
         </section>
         {/* Animated CTA */}
         <section className="py-14 flex flex-col items-center bg-gradient-to-br from-blue-600/10 to-cyan-300/10 dark:from-black dark:to-zinc-900">
           <motion.h2 initial={{ opacity:0 }} whileInView={{ opacity:1 }} transition={{ duration:0.9 }} viewport={{ once:true }} className="text-2xl md:text-3xl font-bold mb-4 text-blue-700 dark:text-cyan-300">Let’s Build Something Amazing Together</motion.h2>
-          <motion.a href="#contact" whileHover={{ scale: 1.04 }} whileTap={{ scale:0.95 }} className="px-8 py-3 font-semibold rounded-full bg-blue-700 text-white shadow-lg hover:bg-blue-800 transition-colors">Contact Us</motion.a>
+          <motion.a href="#contact" whileHover={{ scale: 1.04 }} whileTap={{ scale:0.95 }} className="px-8 py-3 font-semibold rounded-full bg-blue-700 text-white shadow-lg hover:bg-blue-800 transition-colors">Get Free Consultation</motion.a>
         </section>
       </div>
     </div>
